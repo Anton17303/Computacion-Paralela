@@ -1,0 +1,13 @@
+$ python3 ../graficar.py amdahl_fp100.csv amdahl_fp95.csv amdahl_fp90.csv amdahl_fp75.csv amdahl_fp50.csv suma.csv desb_static.csv desb_dynamic.csv desb_guided.csv gustafson.csv
+[amdahl] 80 filas
+  -> amdahl_speedup.png
+  -> amdahl_eficiencia.png
+[suma] 25 filas
+  -> suma_speedup.png
+[desbalance] 48 filas
+  -> desbalance_speedup.png
+  -> desbalance_eficiencia.png
+[gustafson] 16 filas
+  -> gustafson_speedup.png
+  -> gustafson_eficiencia.png
+[exit 0]

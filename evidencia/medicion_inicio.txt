@@ -1,0 +1,4 @@
+# inicio: 2026-10-10 18:24:10
+# predicciones.txt modificado: 2026-10-10 18:23:04
+ffd0e24ca5172056c7b2e1edea22134f9c88440b4f88b25518475583a1355be1  lab12_speedup.c
+# fin: 2026-10-10 18:27:22

@@ -1,34 +1,25 @@
 #!/usr/bin/env python3
 """
-Lab 12 — Persona 1: calcula, a partir de TUS CSV originales, todos los números
-que piden las Partes 1 y 2 (tabla oficial, cálculos a mano, contrastes).
+Lab 12 — Partes 1 y 2: calcula, a partir de los CSV originales, todos los números
+que piden (tabla oficial, cálculos a mano, contrastes).
 
-Uso (en la carpeta con los CSV):
-    python3 analizar_persona1.py
+Uso:
+    python3 analizar_partes12.py [carpeta_con_csv]
 Espera: amdahl_fp100.csv amdahl_fp95.csv amdahl_fp90.csv amdahl_fp75.csv
         amdahl_fp50.csv suma.csv
 No inventa nada: si falta un archivo o pmax < 4, lo avisa.
 """
-import csv
 import os
 import sys
+
+from graficar import leer as leer_varios
 
 FPS = ["100", "95", "90", "75", "50"]
 
 
 def leer(path):
-    filas = []
-    with open(path, newline="") as f:
-        for r in csv.DictReader(f):
-            r["N"], r["p"] = int(r["N"]), int(r["p"])
-            for k in ("t_seq", "t_par", "t_parte_seq"):
-                r[k] = float(r[k])
-            r["S"] = r["t_seq"] / r["t_par"]
-            r["E"] = r["S"] / r["p"]
-            r["C"] = r["p"] * r["t_par"]
-            r["F"] = r["S"] / r["C"]
-            filas.append(r)
-    return filas
+    # reusa el lector de graficar.py para no duplicar el cálculo de S, E, C y F
+    return leer_varios([path])
 
 
 def amdahl(fp, p):
@@ -82,7 +73,8 @@ def main():
         rs = {r["p"]: r for r in datos["75"]}
         pmax = max(rs)
         print("\n## P1.2 (fp = 0.75): ganancia marginal ΔS = S(p) - S(p-1)")
-        for p in (2, 3, 4, pmax - 1, pmax):
+        # el enunciado compara el hilo 8 contra el 2, por eso va fijo en la lista
+        for p in sorted({2, 3, 4, 8, pmax - 1, pmax}):
             if p in rs and (p - 1) in rs and p >= 2:
                 print(f"  hilo {p}: ΔS = {rs[p]['S']-rs[p-1]['S']:+.3f}")
 

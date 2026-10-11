@@ -1,0 +1,4 @@
+$ python3 -c import matplotlib; print('matplotlib', matplotlib.__version__)
+matplotlib 3.6.3
+[exit 0]
+

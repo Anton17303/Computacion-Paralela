@@ -1,0 +1,31 @@
+﻿# fecha: 2026-10-10 18:22:19
+# Get-CimInstance Win32_Processor
+Name                      : AMD Ryzen 7 8845HS w/ Radeon 780M Graphics
+NumberOfCores             : 8
+NumberOfLogicalProcessors : 16
+MaxClockSpeed             : 3801
+L2CacheSize               : 8192
+L3CacheSize               : 16384
+
+# alimentacion (PowerOnline = conectada)
+PowerOnline : True
+
+# procesos relevantes abiertos
+Name     Count
+----     -----
+msedge       9
+OneDrive     1
+
+# wsl -l -v
+  NAME                STATE           VERSION
+
+* docker-desktop      Stopped         2
+
+  Ubuntu              Running         2
+
+  OracleLinux_8_10    Stopped         2
+
+
+
+# msedge: procesos de fondo, sin ventanas visibles
+# nucleos rendimiento/eficiencia: ni lscpu (WSL) ni Win32_Processor los distinguen; lscpu muestra 8 nucleos con L2 identica (8 instancias de 1 MiB)

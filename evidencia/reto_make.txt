@@ -1,0 +1,13 @@
+# inicio: 2026-10-10 18:30:07
+$ grep -n tamanos\[\] = lab12_speedup.c
+114:    long tamanos[] = {65536, 131072, 262144, 524288, 1048576, 2097152, 4194304};
+[exit 0]
+
+$ sha256sum lab12_speedup.c
+50b7d98e790f17342488ba05cf4a8a0599ab477dfbfb78a668187251096cf92e  lab12_speedup.c
+[exit 0]
+
+$ make
+gcc -O2 -Wall -fopenmp -o lab12 lab12_speedup.c 
+[exit 0]
+

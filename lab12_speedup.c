@@ -110,7 +110,8 @@ static void exp_amdahl(long W, double fp, int pmax) {
 
 /* ============ Experimento 2: granularidad (sumar N números, como en clase) ============ */
 static void exp_suma(int pmax) {
-    long tamanos[] = {16, 1024, 65536, 1048576, 16777216};
+    /* reto: tamaños alrededor de L2 = 1 MiB por núcleo y L3 = 16 MiB (lscpu) */
+    long tamanos[] = {65536, 131072, 262144, 524288, 1048576, 2097152, 4194304};
     int nt = sizeof(tamanos) / sizeof(tamanos[0]);
     long nmax = tamanos[nt - 1];
     double *a = malloc(nmax * sizeof(double));

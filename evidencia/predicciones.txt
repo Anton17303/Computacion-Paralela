@@ -1,0 +1,47 @@
+LAB 12 - PREDICCIONES (escritas antes de correr cualquier experimento)
+Equipo: AMD Ryzen 7 8845HS, 8 nucleos fisicos / 16 logicos (SMT 2 hilos por nucleo),
+L2 1 MiB por nucleo, L3 16 MiB compartida, WSL2 (hipervisor Microsoft). pmax = 16.
+
+PARTE 1 - Amdahl (W = 400000)
+Modelo: S(p) = 1 / ((1 - fp) + fp/p)
+  fp    S(16) modelo
+  1.00  16.00
+  0.95   9.14
+  0.90   6.40
+  0.75   3.37
+  0.50   1.88
+- fp = 1.00: espero S(16) entre 13 y 15.5 (E 0.81-0.97). Los hilos 9 a 16 son el
+  segundo hilo SMT de cada nucleo: como el trabajo es una cadena de operaciones
+  dependientes, deja unidades libres y SMT deberia ayudar bastante, pero no como
+  un nucleo completo. Ademas el turbo baja con todos los nucleos activos y WSL2
+  agrega una capa de virtualizacion.
+- fp = 0.90: espero S(16) entre 5.8 y 6.4, un poco debajo del modelo (6.40) por
+  overhead de OpenMP y frecuencia.
+
+PARTE 2 - Suma de N numeros
+- Cada parallel for cuesta del orden de 1-2 us (despertar hilos, repartir,
+  reduction, barrera) y sumar un elemento cuesta del orden de 1 ns.
+- N = 16: la version paralela sera cientos de veces mas lenta.
+- Umbral: N* ~ overhead / costo por elemento ~ unos miles de elementos. En la
+  rejilla medida (16, 1024, 65536, 1M, 16M) espero S < 1 en N = 1024 y S > 1
+  desde N = 65536.
+- N grande: con N = 1M (8 MiB, cabe en L3) S cerca de p; con N = 16M (128 MiB,
+  no cabe en cache) S lejos de 16 por ancho de banda de memoria.
+
+PARTE 3 - Desbalance (W = 40000, costo(i) = 1 + 2000*i/W, recta creciente)
+Trabajo total ~ W*(1 + 1000). Con static el bloque k de p tiene costo promedio
+1 + 2000*(k + 0.5)/p (area de un trapecio).
+- p = 4, static: ultimo hilo = (1 + 2000*3.5/4) / (4*1001) = 1751/4004 = 0.437
+  -> le toca ~43.7 % del trabajo -> S esperado ~ 1/0.437 = 2.29.
+- p = 16, static: ultimo hilo ~ 0.121 -> S ~ 8.3 como maximo.
+- dynamic y guided: reparten mejor, espero S(16) bastante mayor que static,
+  con dynamic algo por debajo del ideal por el costo de pedir bloques de 64.
+
+PARTE 4 - Gustafson (W_seq = 20000, W_por_hilo = 100000)
+- Con p = 1 la parte secuencial es 20000/120000 = 1/6 -> fp = 0.83.
+- Amdahl con fp = 5/6 (~0.83): limite 1/(1 - 5/6) = 6 (con 0.83 redondeado da 5.9);
+  S(16) = 1/(1/6 + (5/6)/16) = 4.57.
+- Creo que aqui NO aplica ese limite: el trabajo paralelo crece con p mientras
+  la parte secuencial queda fija, asi que t_par casi no cambia y t_seq crece.
+  Espero S creciendo casi lineal, del orden de (20000 + 100000*16)/120000 = 13.5
+  en p = 16, algo menos por SMT.

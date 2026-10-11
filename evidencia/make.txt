@@ -1,0 +1,24 @@
+$ gcc --version
+gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+Copyright (C) 2023 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+[exit 0]
+
+$ make
+gcc -O2 -Wall -fopenmp -o lab12 lab12_speedup.c 
+[exit 0]
+
+$ ls -l lab12
+-rwxr-xr-x 1 dlop6 dlop6 21760 Oct 10 18:22 lab12
+[exit 0]
+
+$ ./lab12
+Uso:
+  ./lab12 amdahl     [W=400000] [fp=0.90] [pmax=16]
+  ./lab12 suma       [pmax=16]
+  ./lab12 desbalance [static|dynamic|guided] [W=40000] [pmax=16]
+  ./lab12 gustafson  [W_por_hilo=100000] [W_seq=20000] [pmax=16]
+[exit 1]
+

@@ -1,0 +1,66 @@
+$ ./lab12 desbalance static > desb_static.csv
+(checksum 6.799e+10)
+[exit 0] [1.6 s]
+$ cat desb_static.csv
+modo,N,p,param,t_seq,t_par,t_parte_seq
+desbalance,40000,1,static,0.050797,0.049359,0
+desbalance,40000,2,static,0.050797,0.038229,0
+desbalance,40000,3,static,0.050797,0.028198,0
+desbalance,40000,4,static,0.050797,0.021926,0
+desbalance,40000,5,static,0.050797,0.017888,0
+desbalance,40000,6,static,0.050797,0.014848,0
+desbalance,40000,7,static,0.050797,0.013700,0
+desbalance,40000,8,static,0.050797,0.012136,0
+desbalance,40000,9,static,0.050797,0.013892,0
+desbalance,40000,10,static,0.050797,0.010031,0
+desbalance,40000,11,static,0.050797,0.009444,0
+desbalance,40000,12,static,0.050797,0.008684,0
+desbalance,40000,13,static,0.050797,0.007794,0
+desbalance,40000,14,static,0.050797,0.007256,0
+desbalance,40000,15,static,0.050797,0.006837,0
+desbalance,40000,16,static,0.050797,0.006692,0
+
+$ ./lab12 desbalance dynamic > desb_dynamic.csv
+(checksum 6.799e+10)
+[exit 0] [1.1 s]
+$ cat desb_dynamic.csv
+modo,N,p,param,t_seq,t_par,t_parte_seq
+desbalance,40000,1,dynamic,0.049594,0.049332,0
+desbalance,40000,2,dynamic,0.049594,0.024677,0
+desbalance,40000,3,dynamic,0.049594,0.016605,0
+desbalance,40000,4,dynamic,0.049594,0.012474,0
+desbalance,40000,5,dynamic,0.049594,0.009850,0
+desbalance,40000,6,dynamic,0.049594,0.008226,0
+desbalance,40000,7,dynamic,0.049594,0.007017,0
+desbalance,40000,8,dynamic,0.049594,0.006193,0
+desbalance,40000,9,dynamic,0.049594,0.005818,0
+desbalance,40000,10,dynamic,0.049594,0.005156,0
+desbalance,40000,11,dynamic,0.049594,0.004728,0
+desbalance,40000,12,dynamic,0.049594,0.004305,0
+desbalance,40000,13,dynamic,0.049594,0.003973,0
+desbalance,40000,14,dynamic,0.049594,0.003791,0
+desbalance,40000,15,dynamic,0.049594,0.003552,0
+desbalance,40000,16,dynamic,0.049594,0.003319,0
+
+$ ./lab12 desbalance guided > desb_guided.csv
+(checksum 6.799e+10)
+[exit 0] [1.1 s]
+$ cat desb_guided.csv
+modo,N,p,param,t_seq,t_par,t_parte_seq
+desbalance,40000,1,guided,0.050294,0.048940,0
+desbalance,40000,2,guided,0.050294,0.024738,0
+desbalance,40000,3,guided,0.050294,0.016261,0
+desbalance,40000,4,guided,0.050294,0.012294,0
+desbalance,40000,5,guided,0.050294,0.009992,0
+desbalance,40000,6,guided,0.050294,0.008249,0
+desbalance,40000,7,guided,0.050294,0.007131,0
+desbalance,40000,8,guided,0.050294,0.006367,0
+desbalance,40000,9,guided,0.050294,0.005628,0
+desbalance,40000,10,guided,0.050294,0.005069,0
+desbalance,40000,11,guided,0.050294,0.004659,0
+desbalance,40000,12,guided,0.050294,0.004278,0
+desbalance,40000,13,guided,0.050294,0.003922,0
+desbalance,40000,14,guided,0.050294,0.003825,0
+desbalance,40000,15,guided,0.050294,0.003532,0
+desbalance,40000,16,guided,0.050294,0.003313,0
+
